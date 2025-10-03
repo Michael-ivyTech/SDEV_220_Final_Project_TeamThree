@@ -21,11 +21,11 @@ class OrderInfo(models.Model):
         return f"{self.customer} {self.order_date} {self.order_cost}"
     
 class BakedGood(models.Model):
+    item_name = models.CharField(max_length=100, default="Donut")
     item_cost = models.DecimalField(max_digits=6, decimal_places=2)
-    calories = models.IntegerField()
 
     def __str__(self):
-        return f"{self.item_cost} {self.calories}"
+        return f"{self.item_cost} {self.item_name}"
 
 
 #mysite = Bakery
