@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load order_extras %}
+
+{% block content %}
+<h2>Employee Panel - Orders</h2>
+
+{% if orders %}
+    {% for order in orders %}
+        <div class="order-card">
+            <h3>Order #{{ order.id }} - {{ order.customer.first_name }} {{ order.customer.last_name }}</h3>
+            <p><strong>Email:</strong> {{ order.customer.email }}</p>
+            <p><strong>Order Date:</strong> {{ order.created_at }}</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.orderitem_set.all %}
+                    <tr>
+                        <td>{{ item.bakedgood.item_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.bakedgood.item_cost|floatformat:2 }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2"><strong>Total</strong></td>
+                        <td><strong>${{ order.orderitem_set.all|calc_order_total }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Order Completed Button -->
+            <form method="POST" action="{% url 'complete_order' order.id %}">
+                {% csrf_token %}
+                <button type="submit" class="complete-btn">Order Completed</button>
+            </form>
+            <hr>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No orders found.</p>
+{% endif %}
+
+{% endblock %}

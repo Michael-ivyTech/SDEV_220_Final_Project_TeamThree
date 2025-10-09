@@ -1,0 +1,182 @@
+/* ===== GENERAL PAGE STYLES ===== */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #fff8f4; /* soft cream tone */
+  color: #222;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* ===== HEADER ===== */
+header {
+  background-color: #004aad; /* bakery blue */
+  color: white;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  color: white;
+  font-size: 2.3rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  margin-top: 0.5rem;
+}
+
+nav a {
+  display: inline-block;
+  background-color: #d00000; /* bakery red */
+  color: white;
+  padding: 0.6rem 1.2rem;
+  margin: 0.3rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+nav a:hover {
+  background-color: #ff1e1e;
+  transform: scale(1.05);
+}
+
+/* ===== PAGE HEADINGS ===== */
+h2 {
+  color: #004aad;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  border-bottom: 3px solid #004aad;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+/* ===== MENU GRID ===== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  padding: 2rem 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.menu-item {
+  border: 2px solid #004aad;
+  border-radius: 10px;
+  padding: 1.2rem;
+  background-color: white;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item h3 {
+  margin-top: 0;
+  color: #004aad;
+  font-size: 1.2rem;
+}
+
+.price {
+  font-weight: bold;
+  color: #d00000;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* ===== ORDER FORM ===== */
+.order-item {
+  margin: 1rem auto;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+/* ===== BUTTONS ===== */
+.ready-btn,
+.back-btn,
+.submit-btn {
+  display: inline-block;
+  background-color: #d00000;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  margin: 1rem 0.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+
+
+.ready-btn:hover,
+.submit-btn:hover,
+.back-btn:hover {
+  background-color: #ff1e1e;
+  transform: scale(1.05);
+}
+
+/* Home page picture */
+
+.bakery-image-container {
+    display: block;
+    text-align: center;
+}
+
+.bakery-image-container img {
+    display: block;
+    margin: 0 auto;
+    max-width: 30%; 
+    height: auto;
+}
+
+
+/* ===== TABLES ===== */
+table {
+  width: 90%;
+  margin: 1.5rem auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+table, th, td {
+  border: 2px solid #004aad;
+}
+
+th {
+  background-color: #004aad;
+  color: white;
+  font-weight: bold;
+}
+
+th, td {
+  padding: 0.8rem;
+}
+
+/* ===== CONFIRMATION PAGE ===== */
+.confirm {
+  margin-top: 2rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #004aad;
+  color: white;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
