@@ -1,25 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
-
+{% block title %}Home - Heyerly's Bakery{% endblock %}
 {% block content %}
-<div class="text-center">
-    <!-- Image on top -->
-    <div class="bakery-image-container mb-4">
-        <img src="{% static 'bakery/images/bakery_front.png' %}" 
-             alt="Heyerly's Bakery storefront" 
-             class="img-fluid rounded shadow">
-    </div>
-
-    <!-- Text below -->
-    <h2>Welcome to Heyerly's Bakery!</h2>
-
-    <p>Located at 107 N Jefferson St, Ossian, IN, United States, Indiana!</p>
-    <p>Explore our delicious menu and place your order online.</p>
-
-    <div>
-        <a href="{% url 'menu' %}" class="ready-btn">View Menu</a>
-        <a href="{% url 'orders' %}" class="ready-btn">Place an Order</a>
-        <a href="{% url 'employee' %}" class="back-btn">Employee Panel</a>
-    </div>
+<div style="max-width:900px;margin:2rem auto;padding:1rem;">
+  <h2>Welcome to Heyerly's Bakery demo</h2>
+  <p>Use the buttons below to navigate.</p>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a class="btn" href="{% url 'accounts:signup' %}">Create Account</a>
+    <a class="btn" href="{% url 'accounts:login' %}">Log In</a>
+    <a class="btn" href="{% url 'menu' %}">View Menu / Place Order</a>
+    <a class="btn" href="{% url 'employee' %}">Bakery Dashboard</a>
+  </div>
 </div>
 {% endblock %}
