@@ -20,13 +20,13 @@
 
     <main>
         {% block content %}
-<nav style='float:right'>
-{% if user.is_authenticated %}
-  Hello, {{ user.username }} | <a href="{% url 'accounts:logout' %}">Logout</a>
-{% else %}
-  <a href="{% url 'accounts:login' %}">Login</a> | <a href="{% url 'accounts:signup' %}">Sign up</a>
-{% endif %}
-</nav>
+            <nav style='float:right'>
+            {% if user.is_authenticated %}
+            Hello, {{ user.username }} | <a href="{% url 'accounts:logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}">Login</a> | <a href="{% url 'accounts:signup' %}">Sign up</a>
+            {% endif %}
+            </nav>
 
         <!-- Page-specific content will go here -->
         {% endblock %}
