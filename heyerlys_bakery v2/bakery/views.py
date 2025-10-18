@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from database.models import BakedGood, Customer, OrderInfo, OrderItem
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
+@login_required
 def home(request):
-    return render(request, 'home.html')
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ} 
+    return render(request, 'home.html', context)
 
 def menu(request):
     items = BakedGood.objects.all()
@@ -15,18 +20,11 @@ def order(request):
 
 def order_submit(request):
     if request.method == "POST":
-        customer_name = request.POST.get("customer_name")
-        customer_email = request.POST.get("customer_email")
-
-        # Split name safely
-        name_parts = customer_name.strip().split()
-        first_name = name_parts[0]
-        last_name = name_parts[-1] if len(name_parts) > 1 else ""
-
+        customer_name = request.user.username
+        customer_email = request.user.email
         # Create customer
         customer = Customer.objects.create(
-            first_name=first_name,
-            last_name=last_name,
+            user=customer_name,
             email=customer_email
         )
 
@@ -73,5 +71,16 @@ def employee(request):
 
 def complete_order(request, order_id):
     order = get_object_or_404(OrderInfo, id=order_id)
-    order.delete()  # remove the order
+    order.completed = True  # remove the order
     return redirect('employee')  # redirect back to the employee panel
+
+def check_email(usery):
+    user = User.objects.get(id=usery.id)
+    heyer_domain = "heyerlysbake.com"
+
+    if user.email.endswith(heyer_domain):
+        employeey = True
+    else:
+        employeey = False
+
+    return employeey
