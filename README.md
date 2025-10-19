@@ -11,7 +11,8 @@ Instructions:
 
 2. Open Command Prompt (Win + R, Type "cmd", Hit Enter), navigate to the folder that the project is in (Type: cd "< Your file path here >"), then type the following commands:
 
-venv\Scripts\activate   # For Windows \n
+venv\Scripts\activate   # For Windows
+
 source venv/bin/activate    # For Mac and Linux
 
 pip install -r requirements.txt
