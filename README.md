@@ -9,9 +9,9 @@ Instructions:
 
 1. Download the Repository from GitHub by clicking the green "Code" button, and extracting the files to desired file location.
 
-2. Open Command Prompt (Win + R, Type "cmd", Hit Enter), navigate to the folder that the project is in (Type: cd "<Your file path here>"), then type the following commands:
+2. Open Command Prompt (Win + R, Type "cmd", Hit Enter), navigate to the folder that the project is in (Type: cd "< Your file path here >"), then type the following commands:
 
-venv\Scripts\activate   # For Windows
+venv\Scripts\activate   # For Windows \n
 source venv/bin/activate    # For Mac and Linux
 
 pip install -r requirements.txt
