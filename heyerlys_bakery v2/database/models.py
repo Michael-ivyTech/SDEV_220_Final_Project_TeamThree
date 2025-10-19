@@ -22,12 +22,11 @@ class BakedGood(models.Model):
 
 # Customer information
 class Customer(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+    user = models.CharField(max_length=30)
     email = models.EmailField()
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.user}"
 
 
 # Orders
@@ -35,6 +34,7 @@ class OrderInfo(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     baked_goods = models.ManyToManyField(BakedGood, through='OrderItem')
     created_at = models.DateTimeField(auto_now_add=True)
+    completed = models.BooleanField(default=False)
 
     def get_total_cost(self):
         total = 0

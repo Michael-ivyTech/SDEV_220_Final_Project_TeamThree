@@ -1,0 +1,49 @@
+/* ===== GENERAL PAGE STYLES ===== */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #fff8f4; /* soft cream tone */
+  color: #222;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* ===== HEADER ===== */
+header {
+  background-color: #004aad; /* bakery blue */
+  color: white;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  color: white;
+  font-size: 2.3rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ===== FORM ===== */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form p {
+  margin: 4px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #004aad;
+  color: white;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  bottom: 0;
+  right:0;
+  left: 0;
+}

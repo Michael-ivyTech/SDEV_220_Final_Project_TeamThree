@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="text-center">
+    
     <!-- Image on top -->
     <div class="bakery-image-container mb-4">
         <img src="{% static 'bakery/images/bakery_front.png' %}" 
@@ -11,15 +12,13 @@
     </div>
 
     <!-- Text below -->
-    <h2>Welcome to Heyerly's Bakery!</h2>
+    <h2>Welcome to Heyerly's Bakery {{ name }}!</h2>
 
     <p>Located at 107 N Jefferson St, Ossian, IN, United States, Indiana!</p>
     <p>Explore our delicious menu and place your order online.</p>
 
     <div>
-        <a href="{% url 'menu' %}" class="ready-btn">View Menu</a>
-        <a href="{% url 'orders' %}" class="ready-btn">Place an Order</a>
-        <a href="{% url 'employee' %}" class="back-btn">Employee Panel</a>
+
     </div>
 </div>
 {% endblock %}
