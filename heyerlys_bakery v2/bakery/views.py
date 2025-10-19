@@ -11,7 +11,9 @@ def home(request):
 
 def menu(request):
     items = BakedGood.objects.all()
-    return render(request, 'menu.html', {'items': items})
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ, 'items': items} 
+    return render(request, 'menu.html', context)
 
 def order(request):
     """Display order form."""
@@ -54,24 +56,21 @@ def confirmation(request, order_id):
 
     # Calculate total cost
     total_cost = sum(item.bakedgood.item_cost * item.quantity for item in order_items)
-
-    return render(request, 'confirmation.html', {
-        'order': order,
-        'total_cost': total_cost
-    })
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ, 'order': order, 'total_cost': total_cost} 
+    return render(request, 'confirmation.html', context)
 
 
 def employee(request):
     # Get all orders, most recent first
-    orders = OrderInfo.objects.all().order_by('-created_at')
-    
-    return render(request, 'employee.html', {
-        'orders': orders
-    })
+    orders = OrderInfo.objects.all().filter(completed=False).order_by('-created_at')
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ, 'orders': orders} 
+    return render(request, 'employee.html', context)
 
 def complete_order(request, order_id):
     order = get_object_or_404(OrderInfo, id=order_id)
-    order.completed = True  # remove the order
+    order.delete()  # remove the order
     return redirect('employee')  # redirect back to the employee panel
 
 def check_email(usery):
