@@ -1,12 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from database.models import BakedGood, Customer, OrderInfo, OrderItem
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
+@login_required
 def home(request):
-    return render(request, 'home.html')
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ} 
+    return render(request, 'home.html', context)
 
 def menu(request):
     items = BakedGood.objects.all()
-    return render(request, 'menu.html', {'items': items})
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ, 'items': items} 
+    return render(request, 'menu.html', context)
 
 def order(request):
     """Display order form."""
@@ -15,18 +22,11 @@ def order(request):
 
 def order_submit(request):
     if request.method == "POST":
-        customer_name = request.POST.get("customer_name")
-        customer_email = request.POST.get("customer_email")
-
-        # Split name safely
-        name_parts = customer_name.strip().split()
-        first_name = name_parts[0]
-        last_name = name_parts[-1] if len(name_parts) > 1 else ""
-
+        customer_name = request.user.username
+        customer_email = request.user.email
         # Create customer
         customer = Customer.objects.create(
-            first_name=first_name,
-            last_name=last_name,
+            user=customer_name,
             email=customer_email
         )
 
@@ -56,22 +56,30 @@ def confirmation(request, order_id):
 
     # Calculate total cost
     total_cost = sum(item.bakedgood.item_cost * item.quantity for item in order_items)
-
-    return render(request, 'confirmation.html', {
-        'order': order,
-        'total_cost': total_cost
-    })
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ, 'order': order, 'total_cost': total_cost} 
+    return render(request, 'confirmation.html', context)
 
 
 def employee(request):
     # Get all orders, most recent first
-    orders = OrderInfo.objects.all().order_by('-created_at')
-    
-    return render(request, 'employee.html', {
-        'orders': orders
-    })
+    orders = OrderInfo.objects.all().filter(completed=False).order_by('-created_at')
+    employ = check_email(request.user)
+    context = {"name": request.user, "employed": employ, 'orders': orders} 
+    return render(request, 'employee.html', context)
 
 def complete_order(request, order_id):
     order = get_object_or_404(OrderInfo, id=order_id)
     order.delete()  # remove the order
     return redirect('employee')  # redirect back to the employee panel
+
+def check_email(usery):
+    user = User.objects.get(id=usery.id)
+    heyer_domain = "heyerlysbake.com"
+
+    if user.email.endswith(heyer_domain):
+        employeey = True
+    else:
+        employeey = False
+
+    return employeey
